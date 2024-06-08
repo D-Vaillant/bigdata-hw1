@@ -11,7 +11,7 @@ def read_mapper_output(input, sep='\t'):
         yield line.rstrip().split(sep, 1)
 
 
-def main(sep='\t'):
+def main(total_words: float, sep='\t'):
     # input comes from STDIN (standard input)
     data = read_mapper_output(sys.stdin, sep=sep)
 
@@ -21,7 +21,7 @@ def main(sep='\t'):
     #   group - iterator yielding all ["<current_word>", "<count>"] items
     for current_word, group in groupby(data, itemgetter(0)):
         try:
-            total_count = sum(int(count) for _, count in group)
+            total_count = sum(int(count) for _, count in group)/total_words
             print(f"{current_word}{sep}{total_count}")
         except ValueError:
             # count was not a number, so silently discard this item
@@ -29,5 +29,5 @@ def main(sep='\t'):
 
 
 if __name__ == "__main__":
-    count_cache = 'dnv2011-hw1/countcache'
-    main()
+    total_words = float(sys.argv[1])
+    main(total_words)
