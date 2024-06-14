@@ -5,8 +5,13 @@ import sys
 sep='\t'
 total_count = 0
 
-for line in sys.stdin:
-    key, value = line.strip().split(sep)
-    total_count += int(value)
+def read_mapper_output(input, sep='\t'):
+    for line in input:
+        yield line.rstrip().split(sep, 1)
 
-print(total_count)
+
+data = read_mapper_output(sys.stdin, sep=sep)
+for line in data:
+    total_count += 1
+
+print(f"TotalCount\t{total_count}")

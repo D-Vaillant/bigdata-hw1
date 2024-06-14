@@ -21,8 +21,8 @@ def main(total_words: float, sep='\t'):
     #   group - iterator yielding all ["<current_word>", "<count>"] items
     for current_word, group in groupby(data, itemgetter(0)):
         try:
-            total_count = sum(int(count) for _, count in group)/total_words
-            print(f"{current_word}{sep}{total_count}")
+            mle = sum(int(count) for _, count in group)/total_words
+            print(f"{current_word}{sep}{mle}")
         except ValueError:
             # count was not a number, so silently discard this item
             pass
