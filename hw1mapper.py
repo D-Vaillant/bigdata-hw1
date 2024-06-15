@@ -6,7 +6,7 @@ import re
 pattern = re.compile(r"[\W_]")
 
 
-def read_input(input, arity: int=1) -> list[str]:
+def read_input(input, arity: int=1):
     for line in input:
         word_list: list[str] = line.split()
         if len(word_list) < arity:  # Line has less than 1 word.
