@@ -29,5 +29,8 @@ def main(total_words: float, sep='\t'):
 
 
 if __name__ == "__main__":
-    total_words = float(sys.argv[1])
+    try:
+        total_words = float(sys.argv[1])
+    except IndexError:
+        total_words = 1
     main(total_words)
